@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="generator" content="Astro v2.6.4">
+    <title>组件库文档</title>
+    <meta name="description" content="一个现代化的React组件库，基于Tailwind CSS构建">
+  <link rel="stylesheet" href="/Kitty/_astro/button.75097a45.css" /></head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="flex min-h-screen">
+      <aside class="w-64 bg-white border-r border-gray-200 hidden md:block">
+        <div class="p-6">
+          <a href="/" class="text-xl font-bold text-gray-900">Kitty</a>
+        </div>
+        <nav class="px-4 py-2">
+          <div class="mb-4">
+            <div class="text-sm font-medium text-gray-500 mb-2 px-2">开始</div>
+            <a href="/docs" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+              介绍
+            </a>
+          </div>
+          <div>
+            <div class="text-sm font-medium text-gray-500 mb-2 px-2">组件</div>
+            <a href="/docs/components/button" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+              Button 按钮
+            </a>
+            <a href="/docs/components/drawer" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+              Drawer 抽屉
+            </a>
+          </div>
+        </nav>
+      </aside>
+      <main class="flex-1 overflow-auto">
+        <div class="max-w-4xl mx-auto px-4 py-8">
+          <h1 id="组件库文档">组件库文档</h1>
+<p>欢迎使用我们的组件库！这个库提供了一系列可复用的React组件，帮助你快速构建现代化的用户界面。</p>
+<h2 id="安装">安装</h2>
+<p>使用npm或yarn安装组件库：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 使用npm</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">install</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">@my-component-library/ui-core</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 使用yarn</span></span>
+<span class="line"><span style="color:#B392F0">yarn</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">add</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">@my-component-library/ui-core</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 使用pnpm</span></span>
+<span class="line"><span style="color:#B392F0">pnpm</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">add</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">@my-component-library/ui-core</span></span></code></pre>
+<h2 id="快速开始">快速开始</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { Button } </span><span style="color:#F97583">from</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">&#39;@my-component-library/ui-core&#39;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">App</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &lt;</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">      &lt;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">&gt;Hello World&lt;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">      &lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;点击我&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    &lt;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="可用组件">可用组件</h2>
+<ul>
+<li><a href="/docs/components/button">Button 按钮</a> - 用于触发操作的交互元素</li>
+<li><a href="/docs/components/drawer">Drawer 抽屉</a> - 从屏幕边缘滑出的浮层面板</li>
+</ul>
+<h2 id="贡献指南">贡献指南</h2>
+<p>我们欢迎社区贡献！如果你发现了bug或有新功能建议，请在GitHub上提交issue或PR。</p>
+        </div>
+      </main>
+    </div>
+  </body></html>

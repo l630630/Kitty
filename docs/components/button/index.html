@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="generator" content="Astro v2.6.4">
+    <title>Button 按钮</title>
+    <meta name="description" content="用于触发操作的交互元素">
+  <link rel="stylesheet" href="/Kitty/_astro/button.75097a45.css" /></head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="flex min-h-screen">
+      <aside class="w-64 bg-white border-r border-gray-200 hidden md:block">
+        <div class="p-6">
+          <a href="/" class="text-xl font-bold text-gray-900">Kitty</a>
+        </div>
+        <nav class="px-4 py-2">
+          <div class="mb-4">
+            <div class="text-sm font-medium text-gray-500 mb-2 px-2">开始</div>
+            <a href="/docs" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+              介绍
+            </a>
+          </div>
+          <div>
+            <div class="text-sm font-medium text-gray-500 mb-2 px-2">组件</div>
+            <a href="/docs/components/button" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+              Button 按钮
+            </a>
+            <a href="/docs/components/drawer" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+              Drawer 抽屉
+            </a>
+          </div>
+        </nav>
+      </aside>
+      <main class="flex-1 overflow-auto">
+        <div class="max-w-4xl mx-auto px-4 py-8">
+          <h1 id="button-按钮">Button 按钮</h1>
+<p>按钮用于触发一个即时操作。</p>
+<h2 id="引入">引入</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { Button } </span><span style="color:#F97583">from</span><span style="color:#E1E4E8"> </span><span style="color:#9ECBFF">&#39;@my-component-library/ui-core&#39;</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h2 id="变体样式">变体样式</h2>
+<style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var c;{let d={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,r)=>{if(t===""||!Array.isArray(r))return r;let[e,n]=r;return e in d?d[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(c=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{var l;if(!this.hydrator||!this.isConnected||(l=this.parentElement)!=null&&l.closest("astro-island[ssr]"))return;let r=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(let s of n){let i=s.closest(this.tagName);!i||!i.isSameNode(this)||(e[s.getAttribute("data-astro-template")||"default"]=s.innerHTML,s.remove())}for(let s of r){let i=s.closest(this.tagName);!i||!i.isSameNode(this)||(e[s.getAttribute("name")||"default"]=s.innerHTML)}let a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((r,e)=>{e.disconnect(),setTimeout(()=>this.childrenConnectedCallback(),0)}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let r=this.getAttribute("before-hydration-url");r&&await import(r),this.start()}start(){let r=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{let n=this.getAttribute("renderer-url"),[a,{default:l}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),s=this.getAttribute("component-export")||"default";if(!s.includes("."))this.Component=a[s];else{this.Component=a;for(let i of s.split("."))this.Component=this.Component[i]}return this.hydrator=l,this.hydrate},r,this)}attributeChangedCallback(){this.hydrate()}},c.observedAttributes=["props"],c))}})();</script><astro-island uid="Z1IHeMA" prefix="r0" component-url="/Kitty/_astro/ButtonDemo.830187a4.js" component-export="BasicButtons" renderer-url="/Kitty/_astro/client.842f53be.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;BasicButtons&quot;,&quot;value&quot;:true}" await-children=""><div class="flex flex-wrap gap-4 my-6"><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        
+        
+        
+      ">默认按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200 focus:ring-blue-500 
+        
+        
+        
+      ">次要按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 
+        
+        
+        
+      ">危险按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500 
+        
+        
+        
+      ">警告按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500 
+        
+        
+        
+      ">信息按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 
+        
+        
+        
+      ">成功按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-transparent border border-blue-300 text-blue-700 hover:bg-blue-50 focus:ring-blue-500 
+        
+        
+        
+      ">描边按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-transparent text-blue-700 hover:bg-blue-50 focus:ring-blue-500 
+        
+        
+        
+      ">幽灵按钮</button></div></astro-island>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;默认按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">variant</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;secondary&quot;</span><span style="color:#E1E4E8">&gt;次要按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">variant</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;outline&quot;</span><span style="color:#E1E4E8">&gt;描边按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">variant</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;ghost&quot;</span><span style="color:#E1E4E8">&gt;幽灵按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span></code></pre>
+<h2 id="尺寸">尺寸</h2>
+<astro-island uid="ZHJsmP" prefix="r1" component-url="/Kitty/_astro/ButtonDemo.830187a4.js" component-export="ButtonSizes" renderer-url="/Kitty/_astro/client.842f53be.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;ButtonSizes&quot;,&quot;value&quot;:true}" await-children=""><div class="flex items-center flex-wrap gap-4 my-6"><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-sm px-3 py-1.5 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        
+        
+        
+      ">小按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        
+        
+        
+      ">中按钮</button><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-lg px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        
+        
+        
+      ">大按钮</button></div></astro-island>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">size</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;sm&quot;</span><span style="color:#E1E4E8">&gt;小按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">size</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;md&quot;</span><span style="color:#E1E4E8">&gt;中按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">size</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;lg&quot;</span><span style="color:#E1E4E8">&gt;大按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span></code></pre>
+<h2 id="状态">状态</h2>
+<astro-island uid="21trUj" prefix="r2" component-url="/Kitty/_astro/ButtonDemo.830187a4.js" component-export="DisabledButtons" renderer-url="/Kitty/_astro/client.842f53be.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;DisabledButtons&quot;,&quot;value&quot;:true}" await-children=""><div class="flex flex-wrap gap-4 my-6"><button disabled="" class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        
+        opacity-50 cursor-not-allowed
+        
+      ">禁用按钮</button><button disabled="" class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        
+        opacity-50 cursor-not-allowed
+        
+      "><svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>加载中</button><button disabled="" class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200 focus:ring-blue-500 
+        
+        opacity-50 cursor-not-allowed
+        
+      ">禁用按钮</button></div></astro-island>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">disabled</span><span style="color:#E1E4E8">&gt;禁用按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">loading</span><span style="color:#E1E4E8">&gt;加载中&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">variant</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">&quot;secondary&quot;</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">disabled</span><span style="color:#E1E4E8">&gt;禁用按钮&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span></code></pre>
+<h2 id="宽度撑满">宽度撑满</h2>
+<astro-island uid="1begaE" prefix="r3" component-url="/Kitty/_astro/ButtonDemo.830187a4.js" component-export="FullWidthButton" renderer-url="/Kitty/_astro/client.842f53be.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;FullWidthButton&quot;,&quot;value&quot;:true}" await-children=""><div class="w-full my-6"><button class="inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 text-base px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 
+        w-full
+        
+        
+      ">宽度撑满</button></div></astro-island>
+<pre class="astro-code github-dark" style="background-color:#24292e;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">fullWidth</span><span style="color:#E1E4E8">&gt;宽度撑满&lt;/</span><span style="color:#79B8FF">Button</span><span style="color:#E1E4E8">&gt;</span></span></code></pre>
+<h2 id="api">API</h2>
+<h3 id="属性">属性</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>属性</th><th>说明</th><th>类型</th><th>默认值</th></tr></thead><tbody><tr><td>variant</td><td>按钮变体</td><td><code>&#39;primary&#39; | &#39;secondary&#39; | &#39;outline&#39; | &#39;ghost&#39;</code></td><td><code>&#39;primary&#39;</code></td></tr><tr><td>size</td><td>按钮大小</td><td><code>&#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;</code></td><td><code>&#39;md&#39;</code></td></tr><tr><td>disabled</td><td>是否禁用</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>loading</td><td>是否加载</td><td><code>boolean</code></td><td><code>true</code></td></tr><tr><td>fullWidth</td><td>是否宽度撑满</td><td><code>boolean</code></td><td><code>false</code></td></tr></tbody></table>
+        </div>
+      </main>
+    </div>
+  </body></html>
