@@ -19,8 +19,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: 构建
+  build-and-deploy:
+    name: 构建和部署
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
@@ -42,19 +42,9 @@ jobs:
       - name: 构建组件库
         run: pnpm build
         
-      - name: 上传构建产物
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./website/dist
-          
-  deploy:
-    name: 部署
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: 部署到 GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: website/dist  # 要部署的文件夹
+          branch: gh-pages      # 要部署到的分支
+          clean: true           # 自动清理旧文件 
