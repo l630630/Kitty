@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { getPath } from "../utils/path";
 
 interface Props {
   title: string;
@@ -21,30 +22,30 @@ const _pageDescription = frontmatter?.description || description;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={getPath("favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    {pageDescription && <meta name="description" content={pageDescription} />}
+    <title>{_pageTitle}</title>
+    {_pageDescription && <meta name="description" content={_pageDescription} />}
   </head>
   <body class="bg-gray-50 min-h-screen">
     <div class="flex min-h-screen">
       <aside class="w-64 bg-white border-r border-gray-200 hidden md:block">
         <div class="p-6">
-          <a href="/" class="text-xl font-bold text-gray-900">我的组件库</a>
+          <a href={getPath("")} class="text-xl font-bold text-gray-900">我的组件库</a>
         </div>
         <nav class="px-4 py-2">
           <div class="mb-4">
             <div class="text-sm font-medium text-gray-500 mb-2 px-2">开始</div>
-            <a href="/docs" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+            <a href={getPath("docs")} class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
               介绍
             </a>
           </div>
           <div>
             <div class="text-sm font-medium text-gray-500 mb-2 px-2">组件</div>
-            <a href="/docs/components/button" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+            <a href={getPath("docs/components/button")} class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
               Button 按钮
             </a>
-            <a href="/docs/components/drawer" class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+            <a href={getPath("docs/components/drawer")} class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
               Drawer 抽屉
             </a>
           </div>
