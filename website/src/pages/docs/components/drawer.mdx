@@ -1,0 +1,185 @@
+---
+title: Drawer 抽屉
+description: 从屏幕边缘滑出的浮层面板
+layout: ../../../layouts/MainLayout.astro
+---
+
+import { BasicDrawer, PlacementDrawer, SizeDrawer, FooterDrawer } from '../../../components/DrawerDemo';
+
+# Drawer 抽屉
+
+抽屉是一种从屏幕边缘滑出的浮层面板，可以替代模态对话框，承载更多内容。
+
+## 引入
+
+```jsx
+import { Drawer } from '@my-component-library/ui-core';
+```
+
+## 基础用法
+
+<div className="my-8">
+  <BasicDrawer client:load />
+</div>
+
+```jsx
+import React, { useState } from 'react';
+import { Button, Drawer } from '@my-component-library/ui-core';
+
+function BasicDrawer() {
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const closeDrawer = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button onClick={showDrawer}>打开抽屉</Button>
+      <Drawer
+        open={open}
+        onClose={closeDrawer}
+        title="基础抽屉"
+      >
+        <p>这是一个基础抽屉的内容</p>
+        <p className="mt-4">你可以放置任何内容在这里</p>
+      </Drawer>
+    </div>
+  );
+}
+```
+
+## 不同方向
+
+抽屉可以从上、右、下、左四个方向滑出。
+
+<div className="my-8">
+  <PlacementDrawer client:load />
+</div>
+
+```jsx
+function PlacementDrawer() {
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState("right");
+
+  const showDrawer = (p) => {
+    setPlacement(p);
+    setOpen(true);
+  };
+
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button onClick={() => showDrawer("top")}>从上方打开</Button>
+      <Button onClick={() => showDrawer("right")}>从右侧打开</Button>
+      <Button onClick={() => showDrawer("bottom")}>从下方打开</Button>
+      <Button onClick={() => showDrawer("left")}>从左侧打开</Button>
+      
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        placement={placement}
+        title={`${placement}方向的抽屉`}
+      >
+        <p>这是一个可以从不同方向打开的抽屉</p>
+      </Drawer>
+    </div>
+  );
+}
+```
+
+## 不同尺寸
+
+抽屉有四种预设尺寸：`sm`、`md`、`lg`和`full`。
+
+<div className="my-8">
+  <SizeDrawer client:load />
+</div>
+
+```jsx
+function SizeDrawer() {
+  const [open, setOpen] = useState(false);
+  const [size, setSize] = useState("md");
+
+  const showDrawer = (s) => {
+    setSize(s);
+    setOpen(true);
+  };
+
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button onClick={() => showDrawer("sm")}>小抽屉</Button>
+      <Button onClick={() => showDrawer("md")}>中抽屉</Button>
+      <Button onClick={() => showDrawer("lg")}>大抽屉</Button>
+      <Button onClick={() => showDrawer("full")}>全屏抽屉</Button>
+      
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        size={size}
+        title={`${size}尺寸的抽屉`}
+      >
+        <p>这是一个不同尺寸的抽屉</p>
+      </Drawer>
+    </div>
+  );
+}
+```
+
+## 带页脚的抽屉
+
+你可以在抽屉中添加页脚，通常用于放置操作按钮。
+
+<div className="my-8">
+  <FooterDrawer client:load />
+</div>
+
+```jsx
+function FooterDrawer() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>带页脚的抽屉</Button>
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        title="带页脚的抽屉"
+        footer={
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={() => setOpen(false)}>取消</Button>
+            <Button onClick={() => setOpen(false)}>确定</Button>
+          </div>
+        }
+      >
+        <p>这是一个带有页脚的抽屉</p>
+        <p className="mt-4">页脚通常用于放置操作按钮</p>
+      </Drawer>
+    </div>
+  );
+}
+```
+
+## API
+
+### 属性
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| open | 是否显示抽屉 | `boolean` | - |
+| onClose | 关闭抽屉的回调函数 | `() => void` | - |
+| placement | 抽屉的位置 | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` |
+| size | 抽屉的大小 | `'sm' \| 'md' \| 'lg' \| 'full'` | `'md'` |
+| maskClosable | 点击遮罩层是否可以关闭 | `boolean` | `true` |
+| mask | 是否显示遮罩层 | `boolean` | `true` |
+| title | 抽屉的标题 | `React.ReactNode` | - |
+| closeIcon | 关闭按钮 | `boolean \| React.ReactNode` | `true` |
+| className | 抽屉容器的类名 | `string` | - |
+| style | 抽屉容器的样式 | `React.CSSProperties` | - |
+| contentClassName | 抽屉内容的类名 | `string` | - |
+| contentStyle | 抽屉内容的样式 | `React.CSSProperties` | - |
+| footer | 页脚内容 | `React.ReactNode` | - |
+| footerClassName | 页脚的类名 | `string` | - | 

@@ -1,0 +1,66 @@
+---
+title: Button 按钮
+description: 用于触发操作的交互元素
+layout: ../../../layouts/MainLayout.astro
+---
+
+import { BasicButtons, ButtonSizes, DisabledButtons, FullWidthButton } from '../../../components/ButtonDemo';
+
+# Button 按钮
+
+按钮用于触发一个即时操作。
+
+## 引入
+
+```jsx
+import { Button } from '@my-component-library/ui-core';
+```
+
+## 基础用法
+
+<BasicButtons client:load />
+
+```jsx
+<Button>默认按钮</Button>
+<Button variant="secondary">次要按钮</Button>
+<Button variant="outline">描边按钮</Button>
+<Button variant="ghost">幽灵按钮</Button>
+```
+
+## 尺寸
+
+<ButtonSizes client:load />
+
+```jsx
+<Button size="sm">小按钮</Button>
+<Button size="md">中按钮</Button>
+<Button size="lg">大按钮</Button>
+```
+
+## 禁用状态
+
+<DisabledButtons client:load />
+
+```jsx
+<Button disabled>禁用按钮</Button>
+<Button variant="secondary" disabled>禁用按钮</Button>
+```
+
+## 宽度撑满
+
+<FullWidthButton client:load />
+
+```jsx
+<Button fullWidth>宽度撑满</Button>
+```
+
+## API
+
+### 属性
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| variant | 按钮变体 | `'primary' \| 'secondary' \| 'outline' \| 'ghost'` | `'primary'` |
+| size | 按钮大小 | `'sm' \| 'md' \| 'lg'` | `'md'` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| fullWidth | 是否宽度撑满 | `boolean` | `false` | 

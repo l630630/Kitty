@@ -1,0 +1,28 @@
+{
+  "name": "my-component-library",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --no-daemon --filter=website",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "check": "biome check --write --unsafe .",
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.1.1",
+    "@changesets/cli": "^2.26.0",
+    "prettier": "^2.8.8",
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.4"
+  },
+  "packageManager": "pnpm@8.6.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
