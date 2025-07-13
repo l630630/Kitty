@@ -1,4 +1,4 @@
-# My Component Library
+# Kitty
 
 一个现代化的 React 组件库，基于 TypeScript、Tailwind CSS 和 Astro 构建。
 
