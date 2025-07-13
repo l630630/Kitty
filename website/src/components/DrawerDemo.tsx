@@ -4,10 +4,9 @@ import {
   type DrawerPlacement,
   type DrawerSize,
 } from "@my-component-library/ui-core";
-import type React from "react";
-import { useState } from "react";
+import React, { type ReactElement, useState } from "react";
 
-export function BasicDrawer(): React.ReactElement {
+export function BasicDrawer(): ReactElement {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -29,7 +28,7 @@ export function BasicDrawer(): React.ReactElement {
   );
 }
 
-export function PlacementDrawer(): React.ReactElement {
+export function PlacementDrawer(): ReactElement {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState<DrawerPlacement>("right");
 
@@ -61,7 +60,7 @@ export function PlacementDrawer(): React.ReactElement {
   );
 }
 
-export function SizeDrawer(): React.ReactElement {
+export function SizeDrawer(): ReactElement {
   const [open, setOpen] = useState(false);
   const [size, setSize] = useState<DrawerSize>("md");
 
@@ -93,7 +92,7 @@ export function SizeDrawer(): React.ReactElement {
   );
 }
 
-export function FooterDrawer(): React.ReactElement {
+export function FooterDrawer(): ReactElement {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {

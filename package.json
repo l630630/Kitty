@@ -4,19 +4,24 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:ui-core": "turbo run build --filter=@my-component-library/ui-core",
     "dev": "turbo run dev --no-daemon --filter=website",
     "lint": "biome check .",
     "format": "biome format --write .",
     "check": "biome check --write --unsafe .",
+    "fix": "biome check --write --apply --unsafe .",
+    "fix:format": "biome format --write --unsafe .",
     "test": "turbo run test",
     "clean": "turbo run clean",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build && changeset publish"
+    "release": "turbo run build && changeset publish",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.1",
     "@changesets/cli": "^2.26.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "turbo": "^1.10.0",
     "typescript": "^5.0.4"

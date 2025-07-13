@@ -1,0 +1,50 @@
+name: 部署到 GitHub Pages
+
+on:
+  # 每次推送到 main 分支时触发部署
+  push:
+    branches: [main]
+  # 允许手动触发部署
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许一个并发部署
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: 构建和部署
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+      
+      - name: 设置 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: 设置 PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0
+          
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+        
+      - name: 构建组件库
+        run: pnpm build
+        
+      - name: 部署到 GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: website/dist  # 要部署的文件夹
+          branch: gh-pages      # 要部署到的分支
+          clean: true           # 自动清理旧文件 

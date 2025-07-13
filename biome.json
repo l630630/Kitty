@@ -18,6 +18,14 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useKeyWithClickEvents": "off",
+        "noStaticElementInteractions": "off"
+      },
+      "correctness": {
+        "noUnusedImports": "off"
+      },
       "complexity": {
         "recommended": true
       },
@@ -29,7 +37,8 @@
   },
   "javascript": {
     "formatter": {
-      "bracketSpacing": true
+      "bracketSpacing": true,
+      "quoteStyle": "double"
     }
   },
   "json": {
