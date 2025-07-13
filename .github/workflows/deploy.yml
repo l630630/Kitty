@@ -1,53 +1,44 @@
-name: 部署到 GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
-  # 每次推送到 main 分支时触发部署
   push:
-    branches: [main]
-  # 允许手动触发部署
-  workflow_dispatch:
-
-# 设置 GITHUB_TOKEN 的权限
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# 只允许一个并发部署
-concurrency:
-  group: pages
-  cancel-in-progress: true
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
-    name: 构建和部署
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
     steps:
-      - name: 检出代码
-        uses: actions/checkout@v3
-      
-      - name: 设置 Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          
-      - name: 设置 PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.6.0
-          
-      - name: 安装依赖
-        run: pnpm install --frozen-lockfile
-        
-      - name: 构建组件库
-        run: pnpm build
-        
-      - name: 部署到 GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: website/dist
-          branch: gh-pages
-          clean: true
-          # 移除 token 配置，使用默认的 GITHUB_TOKEN
-          force: true
-          attempt-limit: 3
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    
+    - name: Install dependencies
+      run: pnpm install
+    
+    - name: Build website
+      run: pnpm --filter website build
+    
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: website/dist
+        branch: main  # 改为 main 分支
+        clean: true
+        force: true
+        attempt-limit: 3
