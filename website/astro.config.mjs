@@ -9,7 +9,10 @@ export default defineConfig({
   // 添加 GitHub Pages 部署配置
   site: `https://l630630.github.io`,
   // 本地开发时注释掉 base 配置
-  // base: `/${REPO_NAME}`,
+  base: `/${REPO_NAME}`,
+  build: {
+    assets: "_astro",
+  },
   integrations: [
     mdx(),
     react(),
