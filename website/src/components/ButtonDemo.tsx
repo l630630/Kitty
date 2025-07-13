@@ -1,18 +1,21 @@
 import { Button } from "@my-component-library/ui-core";
-import type React from "react";
+import React, { type ReactElement } from "react";
 
-export function BasicButtons() {
+export function VariantButtons() {
   return (
     <div className="flex flex-wrap gap-4 my-6">
       <Button>默认按钮</Button>
       <Button variant="secondary">次要按钮</Button>
+      <Button color="green">成功按钮</Button>
+      <Button color="red">危险按钮</Button>
+      <Button color="gray">信息按钮</Button>
       <Button variant="outline">描边按钮</Button>
       <Button variant="ghost">幽灵按钮</Button>
     </div>
   );
 }
 
-export function ButtonSizes(): React.ReactElement {
+export function ButtonSizes(): ReactElement {
   return (
     <div className="flex items-center flex-wrap gap-4 my-6">
       <Button size="sm">小按钮</Button>
@@ -22,13 +25,14 @@ export function ButtonSizes(): React.ReactElement {
   );
 }
 
-export function DisabledButtons() {
+export function StatesButtons() {
   return (
     <div className="flex flex-wrap gap-4 my-6">
       <Button disabled>禁用按钮</Button>
       <Button variant="secondary" disabled>
         禁用按钮
       </Button>
+      <Button loading={true}>加载中按钮</Button>
     </div>
   );
 }
@@ -42,16 +46,16 @@ export function FullWidthButton() {
 }
 
 interface ButtonDemoExports {
-  BasicButtons: typeof BasicButtons;
+  VariantButtons: typeof VariantButtons;
   ButtonSizes: typeof ButtonSizes;
-  DisabledButtons: typeof DisabledButtons;
+  StatesButtons: typeof StatesButtons;
   FullWidthButton: typeof FullWidthButton;
 }
 
 const exports: ButtonDemoExports = {
-  BasicButtons,
+  VariantButtons,
   ButtonSizes,
-  DisabledButtons,
+  StatesButtons,
   FullWidthButton,
 };
 

@@ -1,3 +1,4 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
@@ -8,21 +9,15 @@ var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) =>
-  key in obj
-    ? __defProp(obj, key, {
-        enumerable: true,
-        configurable: true,
-        writable: true,
-        value,
-      })
-    : (obj[key] = value);
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
   if (__getOwnPropSymbols)
     for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
     }
   return a;
 };
@@ -44,37 +39,28 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
-  if ((from && typeof from === "object") || typeof from === "function") {
-    for (const key of __getOwnPropNames(from))
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, {
-          get: () => from[key],
-          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
-        });
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (
-  (target = mod != null ? __create(__getProtoOf(mod)) : {}),
-  __copyProps(
-    // If the importer is in node compatibility mode or this is not an ESM
-    // file that has been converted to a CommonJS file using a Babel-
-    // compatible transform (i.e. "__esModule" has not been set), then set
-    // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule
-      ? __defProp(target, "default", { value: mod, enumerable: true })
-      : target,
-    mod,
-  )
-);
-var __toCommonJS = (mod) =>
-  __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
-  Drawer: () => Drawer,
+  Drawer: () => Drawer
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -82,63 +68,115 @@ module.exports = __toCommonJS(src_exports);
 var import_react = __toESM(require("react"));
 
 // src/Button/index.variant.ts
-var variantStyles = {
-  primary: `bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500`,
-  secondary: `bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500`,
-  outline: `bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500`,
-  ghost: `bg-transparent text-gray-700 hover:bg-gray-50 focus:ring-gray-500`,
+var colorStyles = {
+  blue: {
+    primary: `bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500`,
+    secondary: `bg-blue-100 text-blue-800 hover:bg-blue-200 focus:ring-blue-500`,
+    outline: `bg-transparent border border-blue-500 text-blue-600 hover:bg-blue-50 focus:ring-blue-500`,
+    ghost: `bg-transparent text-blue-600 hover:bg-blue-50 focus:ring-blue-500`
+  },
+  green: {
+    primary: `bg-green-600 text-white hover:bg-green-700 focus:ring-green-500`,
+    secondary: `bg-green-100 text-green-800 hover:bg-green-200 focus:ring-green-500`,
+    outline: `bg-transparent border border-green-500 text-green-600 hover:bg-green-50 focus:ring-green-500`,
+    ghost: `bg-transparent text-green-600 hover:bg-green-50 focus:ring-green-500`
+  },
+  red: {
+    primary: `bg-red-600 text-white hover:bg-red-700 focus:ring-red-500`,
+    secondary: `bg-red-100 text-red-800 hover:bg-red-200 focus:ring-red-500`,
+    outline: `bg-transparent border border-red-500 text-red-600 hover:bg-red-50 focus:ring-red-500`,
+    ghost: `bg-transparent text-red-600 hover:bg-red-50 focus:ring-red-500`
+  },
+  gray: {
+    primary: `bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500`,
+    secondary: `bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500`,
+    outline: `bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500`,
+    ghost: `bg-transparent text-gray-700 hover:bg-gray-50 focus:ring-gray-500`
+  }
 };
 var sizeStyles = {
   sm: `text-sm px-3 py-1.5 rounded-md`,
   md: `text-base px-4 py-2 rounded-md`,
-  lg: `text-lg px-6 py-3 rounded-lg`,
+  lg: `text-lg px-6 py-3 rounded-lg`
 };
 
 // src/Button/index.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-var Button = import_react.default.forwardRef((_a, ref) => {
-  var _b = _a,
-    {
+var Button = import_react.default.forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
       variant = "primary",
       size = "md",
+      color = "blue",
       disabled = false,
+      loading = false,
       fullWidth = false,
       className = "",
-      children,
-    } = _b,
-    props = __objRest(_b, [
+      children
+    } = _b, props = __objRest(_b, [
       "variant",
       "size",
+      "color",
       "disabled",
+      "loading",
       "fullWidth",
       "className",
-      "children",
+      "children"
     ]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-    "button",
-    __spreadProps(
-      __spreadValues(
-        {
-          ref,
-          disabled,
-          className: `
+    const buttonStyle = colorStyles[color][variant];
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "button",
+      __spreadProps(__spreadValues({
+        ref,
+        disabled: disabled || loading,
+        className: `
           inline-flex items-center justify-center font-medium transition-colors
           focus:outline-none focus:ring-2 focus:ring-offset-2
-          ${variantStyles[variant]}
+          ${buttonStyle}
           ${sizeStyles[size]}
           ${fullWidth ? "w-full" : ""}
           ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+          ${loading ? "relative cursor-not-allowed text-transparent" : ""}
           ${className}
-        `,
-        },
-        props,
-      ),
-      {
-        children,
-      },
-    ),
-  );
-});
+        `
+      }, props), {
+        children: loading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex items-center justify-center space-x-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            "svg",
+            {
+              className: "animate-spin h-5 w-5 text-white",
+              xmlns: "http://www.w3.org/2000/svg",
+              fill: "none",
+              viewBox: "0 0 24 24",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "circle",
+                  {
+                    className: "opacity-25",
+                    cx: "12",
+                    cy: "12",
+                    r: "10",
+                    stroke: "currentColor",
+                    strokeWidth: "4"
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "path",
+                  {
+                    className: "opacity-75",
+                    fill: "currentColor",
+                    d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  }
+                )
+              ]
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u52A0\u8F7D\u4E2D" })
+        ] }) : children
+      })
+    );
+  }
+);
 Button.displayName = "Button";
 
 // src/Drawer/index.tsx
@@ -146,44 +184,91 @@ var import_react2 = require("react");
 var import_react_dom = require("react-dom");
 
 // src/Drawer/index.variant.ts
-var placementStyles = {
-  left: "left-0 top-0 bottom-0 h-full",
-  right: "right-0 top-0 bottom-0 h-full",
-  top: "top-0 left-0 right-0 w-full",
-  bottom: "bottom-0 left-0 right-0 w-full",
-};
-var transformStyles = {
-  left: "transform -translate-x-full",
-  right: "transform translate-x-full",
-  top: "transform -translate-y-full",
-  bottom: "transform translate-y-full",
-};
-var sizeStyles2 = {
-  left: {
-    sm: "w-64",
-    md: "w-80",
-    lg: "w-96",
-    full: "w-screen",
+var import_tailwind_variants = require("tailwind-variants");
+var drawerOverlay = (0, import_tailwind_variants.tv)({
+  base: "fixed inset-0 bg-black transition-opacity z-40 backdrop-blur-sm",
+  variants: {
+    open: {
+      true: "opacity-60",
+      false: "opacity-0 pointer-events-none"
+    }
   },
-  right: {
-    sm: "w-64",
-    md: "w-80",
-    lg: "w-96",
-    full: "w-screen",
+  defaultVariants: {
+    open: false
+  }
+});
+var drawerContainer = (0, import_tailwind_variants.tv)({
+  base: "fixed bg-white shadow-lg transition-transform duration-300 ease-in-out z-50 overflow-auto flex flex-col",
+  variants: {
+    placement: {
+      left: "left-0 top-0 bottom-0 h-full",
+      right: "right-0 top-0 bottom-0 h-full",
+      top: "top-0 left-0 right-0 w-full",
+      bottom: "bottom-0 left-0 right-0 w-full"
+    },
+    size: {
+      sm: "",
+      md: "",
+      lg: "",
+      full: ""
+    },
+    open: {
+      true: "",
+      false: ""
+    }
   },
-  top: {
-    sm: "h-32",
-    md: "h-48",
-    lg: "h-64",
-    full: "h-screen",
-  },
-  bottom: {
-    sm: "h-32",
-    md: "h-48",
-    lg: "h-64",
-    full: "h-screen",
-  },
-};
+  compoundVariants: [
+    // 左侧抽屉尺寸
+    { placement: "left", size: "sm", class: "w-64" },
+    { placement: "left", size: "md", class: "w-80" },
+    { placement: "left", size: "lg", class: "w-96" },
+    { placement: "left", size: "full", class: "w-screen" },
+    // 右侧抽屉尺寸
+    { placement: "right", size: "sm", class: "w-64" },
+    { placement: "right", size: "md", class: "w-80" },
+    { placement: "right", size: "lg", class: "w-96" },
+    { placement: "right", size: "full", class: "w-screen" },
+    // 顶部抽屉尺寸
+    { placement: "top", size: "sm", class: "h-32" },
+    { placement: "top", size: "md", class: "h-48" },
+    { placement: "top", size: "lg", class: "h-64" },
+    { placement: "top", size: "full", class: "h-screen" },
+    // 底部抽屉尺寸
+    { placement: "bottom", size: "sm", class: "h-32" },
+    { placement: "bottom", size: "md", class: "h-48" },
+    { placement: "bottom", size: "lg", class: "h-64" },
+    { placement: "bottom", size: "full", class: "h-screen" },
+    // 打开/关闭状态的位移
+    { placement: "left", open: true, class: "translate-x-0" },
+    { placement: "left", open: false, class: "-translate-x-full" },
+    { placement: "right", open: true, class: "translate-x-0" },
+    { placement: "right", open: false, class: "translate-x-full" },
+    { placement: "top", open: true, class: "translate-y-0" },
+    { placement: "top", open: false, class: "-translate-y-full" },
+    { placement: "bottom", open: true, class: "translate-y-0" },
+    { placement: "bottom", open: false, class: "translate-y-full" }
+  ],
+  defaultVariants: {
+    placement: "right",
+    size: "md",
+    open: false
+  }
+});
+var drawerHeader = (0, import_tailwind_variants.tv)({
+  base: "flex items-center justify-between p-4 border-b border-gray-200"
+});
+var drawerTitle = (0, import_tailwind_variants.tv)({
+  base: "text-lg font-medium"
+});
+var drawerCloseButton = (0, import_tailwind_variants.tv)({
+  base: "p-1 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
+});
+var drawerBody = (0, import_tailwind_variants.tv)({
+  base: "p-4 overflow-y-auto flex-1"
+});
+var drawerFooter = (0, import_tailwind_variants.tv)({
+  base: "border-t border-gray-200 p-4"
+});
 
 // src/Drawer/index.tsx
 var import_jsx_runtime2 = require("react/jsx-runtime");
@@ -202,7 +287,7 @@ var Drawer = ({
   contentClassName = "",
   contentStyle,
   footer,
-  footerClassName = "",
+  footerClassName = ""
 }) => {
   const bodyRef = (0, import_react2.useRef)(null);
   const drawerRef = (0, import_react2.useRef)(null);
@@ -219,11 +304,7 @@ var Drawer = ({
   }, [open, onClose]);
   (0, import_react2.useEffect)(() => {
     const handleOutsideClick = (event) => {
-      if (
-        maskClosable &&
-        drawerRef.current &&
-        !drawerRef.current.contains(event.target)
-      ) {
+      if (maskClosable && drawerRef.current && !drawerRef.current.contains(event.target)) {
         onClose();
       }
     };
@@ -252,86 +333,89 @@ var Drawer = ({
   if (typeof document === "undefined") {
     return null;
   }
-  const drawerContent = /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", {
-    className: `fixed inset-0 z-50 ${open ? "visible" : "invisible"}`,
-    "aria-hidden": !open,
-    role: "dialog",
-    "aria-modal": "true",
-    "aria-labelledby": title ? "drawer-title" : void 0,
-    children: [
-      mask &&
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", {
-          className: `absolute inset-0 bg-black transition-opacity duration-300 ${open ? "opacity-50" : "opacity-0"}`,
-          onClick: maskClosable ? onClose : void 0,
-        }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", {
-        ref: drawerRef,
-        className: `
-          absolute bg-white shadow-lg transition-transform duration-300 ease-in-out
-          ${placementStyles[placement]}
-          ${sizeStyles2[placement][size]}
-          ${open ? "" : transformStyles[placement]}
-          ${className}
-        `,
-        style,
-        children: [
-          (title || closeIcon) &&
-            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", {
-              className:
-                "flex items-center justify-between p-4 border-b border-gray-200",
-              children: [
-                title &&
-                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", {
-                    id: "drawer-title",
-                    className: "text-lg font-medium",
-                    children: title,
-                  }),
-                closeIcon &&
-                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", {
-                    type: "button",
-                    onClick: onClose,
-                    className:
-                      "p-1 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none",
-                    "aria-label": "\u5173\u95ED",
-                    children:
-                      closeIcon === true
-                        ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("svg", {
-                            className: "h-6 w-6",
-                            xmlns: "http://www.w3.org/2000/svg",
-                            fill: "none",
-                            viewBox: "0 0 24 24",
-                            stroke: "currentColor",
-                            children: /* @__PURE__ */ (0,
-                            import_jsx_runtime2.jsx)("path", {
-                              strokeLinecap: "round",
-                              strokeLinejoin: "round",
-                              strokeWidth: 2,
-                              d: "M6 18L18 6M6 6l12 12",
-                            }),
-                          })
-                        : closeIcon,
-                  }),
-              ],
-            }),
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", {
-            className: `p-4 overflow-y-auto flex-1 ${contentClassName}`,
-            style: contentStyle,
-            children,
-          }),
-          footer &&
-            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", {
-              className: `border-t border-gray-200 p-4 ${footerClassName}`,
-              children: footer,
-            }),
-        ],
-      }),
-    ],
-  });
-  return (0, import_react_dom.createPortal)(drawerContent, document.body);
+  const renderCloseIcon = () => {
+    if (!closeIcon)
+      return null;
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+      "button",
+      {
+        type: "button",
+        onClick: onClose,
+        className: drawerCloseButton(),
+        "aria-label": "\u5173\u95ED",
+        children: closeIcon === true ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+          "svg",
+          {
+            className: "h-6 w-6",
+            xmlns: "http://www.w3.org/2000/svg",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            stroke: "currentColor",
+            children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+              "path",
+              {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M6 18L18 6M6 6l12 12"
+              }
+            )
+          }
+        ) : closeIcon
+      }
+    );
+  };
+  const renderHeader = () => {
+    if (!title && !closeIcon)
+      return null;
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: drawerHeader(), children: [
+      title && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { id: "drawer-title", className: drawerTitle(), children: title }),
+      renderCloseIcon()
+    ] });
+  };
+  const drawerPortalContent = /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
+    "div",
+    {
+      className: `fixed inset-0 z-50 ${open ? "visible" : "invisible"}`,
+      "aria-hidden": !open,
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-labelledby": title ? "drawer-title" : void 0,
+      children: [
+        mask && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+          "div",
+          {
+            className: drawerOverlay({ open }),
+            onClick: maskClosable ? onClose : void 0
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
+          "div",
+          {
+            ref: drawerRef,
+            className: drawerContainer({ placement, size, open, className }),
+            style,
+            children: [
+              renderHeader(),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+                "div",
+                {
+                  className: drawerBody({ className: contentClassName }),
+                  style: contentStyle,
+                  children
+                }
+              ),
+              footer && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: drawerFooter({ className: footerClassName }), children: footer })
+            ]
+          }
+        )
+      ]
+    }
+  );
+  return (0, import_react_dom.createPortal)(drawerPortalContent, document.body);
 };
 // Annotate the CommonJS export names for ESM import in node:
-0 &&
-  (module.exports = {
-    Button,
-    Drawer,
-  });
+0 && (module.exports = {
+  Button,
+  Drawer
+});

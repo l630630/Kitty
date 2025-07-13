@@ -1,15 +1,15 @@
 ---
 import "../styles/global.css";
-import { getPath } from "../utils/path";
+import { getPath } from "../utils/path"; // 用于构建正确的URL路径
 
-interface Props {
+export type Props = {
   title: string;
   description?: string;
   frontmatter?: {
     title: string;
     description?: string;
   };
-}
+};
 
 // 支持从frontmatter中获取标题和描述（用于MDX文件）
 const { title, description, frontmatter } = Astro.props;
@@ -28,34 +28,111 @@ const _pageDescription = frontmatter?.description || description;
     {_pageDescription && <meta name="description" content={_pageDescription} />}
   </head>
   <body class="bg-gray-50 min-h-screen">
-    <div class="flex min-h-screen">
-      <aside class="w-64 bg-white border-r border-gray-200 hidden md:block">
-        <div class="p-6">
-          <a href={getPath("")} class="text-xl font-bold text-gray-900">我的组件库</a>
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href={getPath("")} class="text-xl font-bold text-primary-600">我的组件库</a>
         </div>
-        <nav class="px-4 py-2">
-          <div class="mb-4">
-            <div class="text-sm font-medium text-gray-500 mb-2 px-2">开始</div>
-            <a href={getPath("docs")} class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+        <div class="hidden md:flex items-center space-x-4">
+          <a href={getPath("docs")} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">文档</a>
+          <a href="https://github.com/l630630/Kitty" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium" target="_blank">GitHub</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden flex items-center p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="flex min-h-[calc(100vh-4rem)]">
+      <!-- 侧边栏 -->
+      <aside id="sidebar" class="w-64 bg-white border-r border-gray-200 hidden md:block overflow-y-auto h-[calc(100vh-4rem)] sticky top-16">
+        <nav class="px-4 py-6">
+          <div class="mb-8">
+            <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">开始</div>
+            <a href={getPath("docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
               介绍
             </a>
           </div>
           <div>
-            <div class="text-sm font-medium text-gray-500 mb-2 px-2">组件</div>
-            <a href={getPath("docs/components/button")} class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+            <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">组件</div>
+            <a href={getPath("docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1 transition-colors">
               Button 按钮
             </a>
-            <a href={getPath("docs/components/drawer")} class="block px-2 py-1 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded">
+            <a href={getPath("docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
               Drawer 抽屉
             </a>
           </div>
         </nav>
       </aside>
+
+      <!-- 移动端侧边栏 -->
+      <div id="mobile-sidebar" class="fixed inset-0 z-20 bg-gray-900 bg-opacity-50 hidden">
+        <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-sidebar-panel">
+          <div class="flex justify-between items-center p-4 border-b">
+            <span class="font-medium">导航菜单</span>
+            <button id="close-sidebar" class="p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100">
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav class="px-4 py-6">
+            <div class="mb-8">
+              <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">开始</div>
+              <a href={getPath("docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
+                介绍
+              </a>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">组件</div>
+              <a href={getPath("docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1">
+                Button 按钮
+              </a>
+              <a href={getPath("docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
+                Drawer 抽屉
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- 主内容区 -->
       <main class="flex-1 overflow-auto">
         <div class="max-w-4xl mx-auto px-4 py-8">
           <slot />
         </div>
       </main>
     </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t border-gray-200 py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} 我的组件库. 保留所有权利.
+      </div>
+    </footer>
+
+    <script>
+      // 移动端菜单交互
+      document.getElementById('mobile-menu-button')?.addEventListener('click', () => {
+        const sidebar = document.getElementById('mobile-sidebar');
+        const panel = document.getElementById('mobile-sidebar-panel');
+        sidebar?.classList.remove('hidden');
+        setTimeout(() => {
+          panel?.classList.remove('-translate-x-full');
+        }, 10);
+      });
+
+      document.getElementById('close-sidebar')?.addEventListener('click', () => {
+        const sidebar = document.getElementById('mobile-sidebar');
+        const panel = document.getElementById('mobile-sidebar-panel');
+        panel?.classList.add('-translate-x-full');
+        setTimeout(() => {
+          sidebar?.classList.add('hidden');
+        }, 300);
+      });
+    </script>
   </body>
 </html> 
