@@ -22,7 +22,7 @@ const _pageDescription = frontmatter?.description || description;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href={getPath("favicon.svg")} />
+    <link rel="icon" type="image/svg+xml" href={getPath("/favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
     <title>{_pageTitle}</title>
     {_pageDescription && <meta name="description" content={_pageDescription} />}
@@ -32,10 +32,10 @@ const _pageDescription = frontmatter?.description || description;
     <header class="bg-white shadow-sm sticky top-0 z-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <div class="flex items-center">
-          <a href={getPath("")} class="text-xl font-bold text-primary-600">我的组件库</a>
+          <a href={getPath("/")} class="text-xl font-bold text-primary-600">我的组件库</a>
         </div>
         <div class="hidden md:flex items-center space-x-4">
-          <a href={getPath("docs")} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">文档</a>
+          <a href={getPath("/docs")} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">文档</a>
           <a href="https://github.com/l630630/Kitty" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium" target="_blank">GitHub</a>
         </div>
         <button id="mobile-menu-button" class="md:hidden flex items-center p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100">
@@ -52,16 +52,16 @@ const _pageDescription = frontmatter?.description || description;
         <nav class="px-4 py-6">
           <div class="mb-8">
             <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">开始</div>
-            <a href={getPath("docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
+            <a href={getPath("/docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
               介绍
             </a>
           </div>
           <div>
             <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">组件</div>
-            <a href={getPath("docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1 transition-colors">
+            <a href={getPath("/docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1 transition-colors">
               Button 按钮
             </a>
-            <a href={getPath("docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
+            <a href={getPath("/docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
               Drawer 抽屉
             </a>
           </div>
@@ -82,16 +82,16 @@ const _pageDescription = frontmatter?.description || description;
           <nav class="px-4 py-6">
             <div class="mb-8">
               <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">开始</div>
-              <a href={getPath("docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
+              <a href={getPath("/docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
                 介绍
               </a>
             </div>
             <div>
               <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">组件</div>
-              <a href={getPath("docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1">
+              <a href={getPath("/docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1">
                 Button 按钮
               </a>
-              <a href={getPath("docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
+              <a href={getPath("/docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
                 Drawer 抽屉
               </a>
             </div>

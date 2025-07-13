@@ -1,13 +1,14 @@
 ---
 import IndexLayout from "../components/IndexLayout";
 import "../styles/global.css";
+import { getPath } from "../utils/path";
 ---
 
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={getPath("/favicon.svg")} />
     <title>我的组件库</title>
   </head>
   <body>

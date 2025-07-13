@@ -14,7 +14,13 @@ export default defineConfig({
     assets: "_astro",
   },
   integrations: [
-    mdx(),
+    mdx({
+      syntaxHighlight: "shiki",
+      shikiConfig: {
+        theme: "github-dark",
+        wrap: true,
+      },
+    }),
     react(),
     tailwind({
       applyBaseStyles: false,
@@ -26,4 +32,8 @@ export default defineConfig({
       wrap: true,
     },
   },
+  server: {
+    port: 3001,
+  },
+  trailingSlash: "always",
 });

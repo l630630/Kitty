@@ -1,5 +1,6 @@
 import { Button, Drawer } from "@my-component-library/ui-core";
 import React, { useState } from "react";
+import { getPath } from "../utils/path";
 
 export default function IndexLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function IndexLayout() {
             CSS构建的高质量React组件，帮助开发者快速构建美观、响应式的用户界面
           </p>
           <div className="flex justify-center gap-4">
-            <a href="/docs">
+            <a href={getPath("/docs")}>
               <Button size="lg">开始使用 →</Button>
             </a>
             <a
@@ -101,7 +102,7 @@ export default function IndexLayout() {
                 </div>
                 <div className="mt-4">
                   <a
-                    href="/docs/components/button"
+                    href={getPath("/docs/components/button")}
                     className="text-blue-600 hover:text-blue-800 hover:underline text-sm font-medium inline-flex items-center"
                   >
                     查看文档
@@ -162,7 +163,7 @@ export default function IndexLayout() {
                 </div>
                 <div className="mt-4">
                   <a
-                    href="/docs/components/drawer"
+                    href={getPath("/docs/components/drawer")}
                     className="text-purple-600 hover:text-purple-800 hover:underline text-sm font-medium inline-flex items-center"
                   >
                     查看文档
@@ -217,7 +218,7 @@ export default function IndexLayout() {
                   我们正在开发更多组件，敬请期待
                 </p>
                 <a
-                  href="/docs"
+                  href={getPath("/docs")}
                   className="text-blue-600 hover:text-blue-800 hover:underline text-sm font-medium"
                 >
                   浏览所有组件
