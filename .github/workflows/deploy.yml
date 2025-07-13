@@ -45,6 +45,9 @@ jobs:
       - name: 部署到 GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: website/dist  # 要部署的文件夹
-          branch: gh-pages      # 要部署到的分支
-          clean: true           # 自动清理旧文件 
+          folder: website/dist
+          branch: gh-pages
+          clean: true
+          # 移除 token 配置，使用默认的 GITHUB_TOKEN
+          force: true
+          attempt-limit: 3
