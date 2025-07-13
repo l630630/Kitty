@@ -3,13 +3,13 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
-const _REPO_NAME = "Kitty";
+const REPO_NAME = "Kitty";
 
 export default defineConfig({
   // 添加 GitHub Pages 部署配置
   site: `https://l630630.github.io`,
   // 本地开发时注释掉 base 配置
-  base: `/${_REPO_NAME}`,
+  base: `/${REPO_NAME}`,
   build: {
     assets: "_astro",
   },
