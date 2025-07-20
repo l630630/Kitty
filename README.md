@@ -143,11 +143,7 @@ pnpm lint
 
 访问我们的在线文档站点查看所有组件的实时演示：
 
-- **首页**：[http://localhost:3002](http://localhost:3002)
-- **组件文档**：[http://localhost:3002/docs](http://localhost:3002/docs)
-- **Button 组件**：[http://localhost:3002/docs/components/button](http://localhost:3002/docs/components/button)
-- **Checkbox 组件**：[http://localhost:3002/docs/components/checkbox](http://localhost:3002/docs/components/checkbox)
-- **Drawer 组件**：[http://localhost:3002/docs/components/drawer](http://localhost:3002/docs/components/drawer)
+- **首页**：[https://l630630.github.io/Kitty/](https://l630630.github.io/Kitty/)
 
 ## 🔨 开发指南
 
