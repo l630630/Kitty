@@ -4,12 +4,14 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
 const REPO_NAME = "Kitty";
+const isProd = process.env.NODE_ENV === "production";
+// 根据环境设置 base 路径
+const base = isProd ? `/${REPO_NAME}` : "";
 
 export default defineConfig({
   // 添加 GitHub Pages 部署配置
   site: `https://l630630.github.io`,
-  // 本地开发时注释掉 base 配置
-  base: `/${REPO_NAME}`,
+  base,
   build: {
     assets: "_astro",
   },
@@ -35,5 +37,5 @@ export default defineConfig({
   server: {
     port: 3001,
   },
-  trailingSlash: "always",
+  trailingSlash: "ignore",
 });

@@ -3,6 +3,7 @@ title: 组件库文档
 description: 一个现代化的React组件库，基于Tailwind CSS构建
 layout: ../../layouts/MainLayout.astro
 ---
+import { getPath } from "../../utils/path";
 
 # 组件库文档
 
@@ -14,19 +15,19 @@ layout: ../../layouts/MainLayout.astro
 
 ```bash
 # 使用npm
-npm install @my-component-library/ui-core
+npm install kitty-react
 
 # 使用yarn
-yarn add @my-component-library/ui-core
+yarn add kitty-react
 
 # 使用pnpm
-pnpm add @my-component-library/ui-core
+pnpm add kitty-react
 ```
 
 ## 快速开始
 
 ```jsx
-import { Button } from '@my-component-library/ui-core';
+import { Button } from 'kitty-react';
 
 function App() {
   return (
@@ -40,8 +41,8 @@ function App() {
 
 ## 可用组件
 
-- [Button 按钮](/docs/components/button) - 用于触发操作的交互元素
-- [Drawer 抽屉](/docs/components/drawer) - 从屏幕边缘滑出的浮层面板
+- <a href={getPath("/docs/components/button")}>Button 按钮</a> - 用于触发操作的交互元素
+- <a href={getPath("/docs/components/drawer")}>Drawer 抽屉</a> - 从屏幕边缘滑出的浮层面板
 
 ## 贡献指南
 

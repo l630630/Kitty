@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "build:ui-core": "turbo run build --filter=@my-component-library/ui-core",
+    "build:ui-core": "turbo run build --filter=kitty-react",
+    "build:website": "turbo run build --filter=website",
     "dev": "turbo run dev --no-daemon --filter=website",
     "lint": "biome check .",
     "format": "biome format --write .",

@@ -3,8 +3,8 @@ import {
   Drawer,
   type DrawerPlacement,
   type DrawerSize,
-} from "@my-component-library/ui-core";
-import React, { type ReactElement, useState } from "react";
+} from "kitty-react";
+import { type ReactElement, useState } from "react";
 
 export function BasicDrawer(): ReactElement {
   const [open, setOpen] = useState(false);
@@ -33,8 +33,23 @@ export function PlacementDrawer(): ReactElement {
   const [placement, setPlacement] = useState<DrawerPlacement>("right");
 
   const showDrawer = (p: DrawerPlacement) => {
-    setPlacement(p);
-    setOpen(true);
+    // 如果抽屉已经打开，先关闭它
+    if (open) {
+      setOpen(false);
+      // 等待抽屉关闭动画完成后再更改方向并重新打开
+      setTimeout(() => {
+        setPlacement(p);
+        setTimeout(() => {
+          setOpen(true);
+        }, 50);
+      }, 300);
+    } else {
+      // 如果抽屉未打开，直接设置方向并打开
+      setPlacement(p);
+      setTimeout(() => {
+        setOpen(true);
+      }, 50);
+    }
   };
 
   const closeDrawer = () => {
@@ -49,6 +64,7 @@ export function PlacementDrawer(): ReactElement {
       <Button onClick={() => showDrawer("left")}>从左侧打开</Button>
 
       <Drawer
+        key={placement} // 添加key属性，确保在placement改变时重新渲染组件
         open={open}
         onClose={closeDrawer}
         placement={placement}
@@ -65,8 +81,23 @@ export function SizeDrawer(): ReactElement {
   const [size, setSize] = useState<DrawerSize>("md");
 
   const showDrawer = (s: DrawerSize) => {
-    setSize(s);
-    setOpen(true);
+    // 如果抽屉已经打开，先关闭它
+    if (open) {
+      setOpen(false);
+      // 等待抽屉关闭动画完成后再更改尺寸并重新打开
+      setTimeout(() => {
+        setSize(s);
+        setTimeout(() => {
+          setOpen(true);
+        }, 50);
+      }, 300);
+    } else {
+      // 如果抽屉未打开，直接设置尺寸并打开
+      setSize(s);
+      setTimeout(() => {
+        setOpen(true);
+      }, 50);
+    }
   };
 
   const closeDrawer = () => {
@@ -81,6 +112,7 @@ export function SizeDrawer(): ReactElement {
       <Button onClick={() => showDrawer("full")}>全屏抽屉</Button>
 
       <Drawer
+        key={size} // 添加key属性，确保在size改变时重新渲染组件
         open={open}
         onClose={closeDrawer}
         size={size}

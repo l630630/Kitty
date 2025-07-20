@@ -3,7 +3,6 @@ node_modules
 
 # 构建输出
 dist
-
 # 编辑器配置
 .vscode
 .idea
