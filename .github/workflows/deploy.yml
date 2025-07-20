@@ -1,51 +1,59 @@
 name: Deploy to GitHub Pages
 
 on:
+  # 在推送到 main 分支时触发
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # 允许手动触发
+  workflow_dispatch:
 
-# 设置权限
+# 设置 GITHUB_TOKEN 的权限以允许部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 允许一个并发部署
+# 只允许一个并发部署，跳过正在运行和最新排队之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望让这些生产部署完成
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-   
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-          
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: 8
-    
-    - name: Install dependencies
-      run: pnpm install
-          
-    - name: Build website
-      run: pnpm --filter website build
-        
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-        
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: './website/dist'
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build components
+        run: pnpm --filter kitty-react build
+
+      - name: Build website
+        run: pnpm --filter website build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './website/dist'
 
   deploy:
     environment:
