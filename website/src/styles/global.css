@@ -3,24 +3,41 @@
 @tailwind utilities;
 
 @layer base {
+  /* 根元素主题过渡 */
+  html {
+    @apply transition-theme duration-300 ease-smooth;
+  }
+
+  /* 主体背景和文字颜色 */
+  body {
+    @apply bg-white dark:bg-dark-900 text-gray-900 dark:text-gray-100 transition-theme duration-300 ease-smooth;
+  }
+
+  /* 标题样式 */
   h1 {
-    @apply text-3xl font-bold mb-6;
+    @apply text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100 transition-theme duration-300;
   }
   h2 {
-    @apply text-2xl font-bold mt-8 mb-4;
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100 transition-theme duration-300;
   }
   h3 {
-    @apply text-xl font-bold mt-6 mb-3;
+    @apply text-xl font-bold mt-6 mb-3 text-gray-900 dark:text-gray-100 transition-theme duration-300;
   }
+
+  /* 段落样式 */
   p {
-    @apply mb-4;
+    @apply mb-4 text-gray-700 dark:text-gray-300 transition-theme duration-300;
   }
+
+  /* 链接样式 */
   a {
-    @apply text-primary-600 hover:text-primary-700;
+    @apply text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-theme duration-300;
   }
+
+  /* 列表样式 */
   ul,
   ol {
-    @apply mb-4 ml-6;
+    @apply mb-4 ml-6 text-gray-700 dark:text-gray-300 transition-theme duration-300;
   }
   ul {
     @apply list-disc;
@@ -31,23 +48,87 @@
   li {
     @apply mb-1;
   }
+
+  /* 表格样式 */
   table {
     @apply w-full mb-6 border-collapse;
   }
   th,
   td {
-    @apply p-2 border border-gray-300;
+    @apply p-2 border border-gray-300 dark:border-gray-600 transition-theme duration-300;
   }
   th {
-    @apply bg-gray-100 font-medium text-left;
+    @apply bg-gray-100 dark:bg-gray-800 font-medium text-left text-gray-900 dark:text-gray-100 transition-theme duration-300;
   }
+
+  /* 代码块样式 */
   pre {
-    @apply mb-6 p-4 rounded-md bg-gray-900 text-white overflow-x-auto;
+    @apply mb-6 p-4 rounded-md bg-gray-900 dark:bg-gray-950 text-white overflow-x-auto transition-theme duration-300;
   }
   code {
     @apply text-sm font-mono;
   }
   :not(pre) > code {
-    @apply px-1.5 py-0.5 rounded bg-gray-100 text-gray-800;
+    @apply px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-theme duration-300;
+  }
+}
+
+@layer components {
+  /* 主题切换按钮样式 */
+  .theme-toggle {
+    @apply relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-theme duration-300 ease-smooth shadow-sm hover:shadow-md;
+  }
+
+  .theme-toggle svg {
+    @apply w-5 h-5 text-gray-700 dark:text-gray-300 transition-theme duration-300;
+  }
+
+  /* 卡片样式 */
+  .card {
+    @apply bg-white dark:bg-dark-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md dark:shadow-gray-900/20 transition-theme duration-300;
+  }
+
+  /* 增强的卡片样式 */
+  .card-enhanced {
+    @apply bg-white dark:bg-dark-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg dark:shadow-gray-900/30 transition-all duration-300 hover:scale-[1.02] hover:border-gray-300 dark:hover:border-gray-600;
+  }
+
+  /* 输入框样式 */
+  .input {
+    @apply bg-white dark:bg-dark-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition-theme duration-300 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400;
+  }
+
+  /* 渐变背景 */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900;
+  }
+
+  /* 玻璃效果 */
+  .glass {
+    @apply bg-white/80 dark:bg-dark-800/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50;
+  }
+
+  /* 发光效果 */
+  .glow {
+    @apply shadow-lg shadow-primary-500/20 dark:shadow-primary-400/20;
+  }
+
+  /* 悬浮效果 */
+  .hover-lift {
+    @apply transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-gray-900/30;
+  }
+
+  /* 网格背景 */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dark .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   }
 }

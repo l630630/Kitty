@@ -36,28 +36,28 @@ import React from "react";
 // src/Button/index.variant.ts
 var colorStyles = {
   blue: {
-    primary: `bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500`,
-    secondary: `bg-blue-100 text-blue-800 hover:bg-blue-200 focus:ring-blue-500`,
-    outline: `bg-transparent border border-blue-500 text-blue-600 hover:bg-blue-50 focus:ring-blue-500`,
-    ghost: `bg-transparent text-blue-600 hover:bg-blue-50 focus:ring-blue-500`
+    primary: `bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200`,
+    secondary: `bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/50 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200`,
+    outline: `bg-transparent border border-blue-500 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200`,
+    ghost: `bg-transparent text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200`
   },
   green: {
-    primary: `bg-green-600 text-white hover:bg-green-700 focus:ring-green-500`,
-    secondary: `bg-green-100 text-green-800 hover:bg-green-200 focus:ring-green-500`,
-    outline: `bg-transparent border border-green-500 text-green-600 hover:bg-green-50 focus:ring-green-500`,
-    ghost: `bg-transparent text-green-600 hover:bg-green-50 focus:ring-green-500`
+    primary: `bg-green-600 dark:bg-green-500 text-white hover:bg-green-700 dark:hover:bg-green-600 focus:ring-green-500 dark:focus:ring-green-400 transition-colors duration-200`,
+    secondary: `bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-900/50 focus:ring-green-500 dark:focus:ring-green-400 transition-colors duration-200`,
+    outline: `bg-transparent border border-green-500 dark:border-green-400 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 focus:ring-green-500 dark:focus:ring-green-400 transition-colors duration-200`,
+    ghost: `bg-transparent text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 focus:ring-green-500 dark:focus:ring-green-400 transition-colors duration-200`
   },
   red: {
-    primary: `bg-red-600 text-white hover:bg-red-700 focus:ring-red-500`,
-    secondary: `bg-red-100 text-red-800 hover:bg-red-200 focus:ring-red-500`,
-    outline: `bg-transparent border border-red-500 text-red-600 hover:bg-red-50 focus:ring-red-500`,
-    ghost: `bg-transparent text-red-600 hover:bg-red-50 focus:ring-red-500`
+    primary: `bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 dark:hover:bg-red-600 focus:ring-red-500 dark:focus:ring-red-400 transition-colors duration-200`,
+    secondary: `bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-900/50 focus:ring-red-500 dark:focus:ring-red-400 transition-colors duration-200`,
+    outline: `bg-transparent border border-red-500 dark:border-red-400 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 focus:ring-red-500 dark:focus:ring-red-400 transition-colors duration-200`,
+    ghost: `bg-transparent text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 focus:ring-red-500 dark:focus:ring-red-400 transition-colors duration-200`
   },
   gray: {
-    primary: `bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500`,
-    secondary: `bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500`,
-    outline: `bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500`,
-    ghost: `bg-transparent text-gray-700 hover:bg-gray-50 focus:ring-gray-500`
+    primary: `bg-gray-600 dark:bg-gray-500 text-white hover:bg-gray-700 dark:hover:bg-gray-600 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-200`,
+    secondary: `bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-600 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-200`,
+    outline: `bg-transparent border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-200`,
+    ghost: `bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-200`
   }
 };
 var sizeStyles = {
@@ -152,10 +152,10 @@ import { createPortal } from "react-dom";
 // src/Drawer/index.variant.ts
 import { tv } from "tailwind-variants";
 var drawerOverlay = tv({
-  base: "fixed inset-0 bg-black transition-opacity z-40 backdrop-blur-sm",
+  base: "fixed inset-0 bg-black dark:bg-gray-950 transition-opacity z-40 backdrop-blur-sm",
   variants: {
     open: {
-      true: "opacity-60",
+      true: "opacity-60 dark:opacity-70",
       false: "opacity-0 pointer-events-none"
     }
   },
@@ -164,7 +164,7 @@ var drawerOverlay = tv({
   }
 });
 var drawerContainer = tv({
-  base: "fixed bg-white shadow-lg transition-transform duration-300 ease-in-out z-50 overflow-auto flex flex-col",
+  base: "fixed bg-white dark:bg-dark-800 shadow-lg dark:shadow-gray-900/50 transition-all duration-300 ease-in-out z-50 overflow-auto flex flex-col border-gray-200 dark:border-gray-700",
   variants: {
     placement: {
       left: "left-0 top-0 bottom-0 h-full",
@@ -221,19 +221,19 @@ var drawerContainer = tv({
   }
 });
 var drawerHeader = tv({
-  base: "flex items-center justify-between p-4 border-b border-gray-200"
+  base: "flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300"
 });
 var drawerTitle = tv({
-  base: "text-lg font-medium"
+  base: "text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300"
 });
 var drawerCloseButton = tv({
-  base: "p-1 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
+  base: "p-1 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-300"
 });
 var drawerBody = tv({
-  base: "p-4 overflow-y-auto flex-1"
+  base: "p-4 overflow-y-auto flex-1 text-gray-900 dark:text-gray-100 transition-colors duration-300"
 });
 var drawerFooter = tv({
-  base: "border-t border-gray-200 p-4"
+  base: "border-t border-gray-200 dark:border-gray-700 p-4 transition-colors duration-300"
 });
 
 // src/Drawer/index.tsx
@@ -380,7 +380,223 @@ var Drawer = ({
   );
   return createPortal(drawerPortalContent, document.body);
 };
+
+// src/Checkbox/index.tsx
+import React2, { useEffect as useEffect2, useRef as useRef2 } from "react";
+
+// src/Checkbox/index.variant.ts
+import { tv as tv2 } from "tailwind-variants";
+var colorStyles2 = {
+  blue: `
+    text-blue-600 dark:text-blue-400
+    focus:ring-blue-500 dark:focus:ring-blue-400
+    border-gray-300 dark:border-gray-600
+    checked:bg-blue-600 dark:checked:bg-blue-500
+    checked:border-blue-600 dark:checked:border-blue-500
+    indeterminate:bg-blue-600 dark:indeterminate:bg-blue-500
+    indeterminate:border-blue-600 dark:indeterminate:border-blue-500
+    transition-colors duration-200
+  `,
+  green: `
+    text-green-600 dark:text-green-400
+    focus:ring-green-500 dark:focus:ring-green-400
+    border-gray-300 dark:border-gray-600
+    checked:bg-green-600 dark:checked:bg-green-500
+    checked:border-green-600 dark:checked:border-green-500
+    indeterminate:bg-green-600 dark:indeterminate:bg-green-500
+    indeterminate:border-green-600 dark:indeterminate:border-green-500
+    transition-colors duration-200
+  `,
+  red: `
+    text-red-600 dark:text-red-400
+    focus:ring-red-500 dark:focus:ring-red-400
+    border-gray-300 dark:border-gray-600
+    checked:bg-red-600 dark:checked:bg-red-500
+    checked:border-red-600 dark:checked:border-red-500
+    indeterminate:bg-red-600 dark:indeterminate:bg-red-500
+    indeterminate:border-red-600 dark:indeterminate:border-red-500
+    transition-colors duration-200
+  `,
+  gray: `
+    text-gray-600 dark:text-gray-400
+    focus:ring-gray-500 dark:focus:ring-gray-400
+    border-gray-300 dark:border-gray-600
+    checked:bg-gray-600 dark:checked:bg-gray-500
+    checked:border-gray-600 dark:checked:border-gray-500
+    indeterminate:bg-gray-600 dark:indeterminate:bg-gray-500
+    indeterminate:border-gray-600 dark:indeterminate:border-gray-500
+    transition-colors duration-200
+  `
+};
+var checkboxContainer = tv2({
+  base: "flex items-start gap-2",
+  variants: {
+    disabled: {
+      true: "opacity-50 cursor-not-allowed",
+      false: "cursor-pointer"
+    }
+  },
+  defaultVariants: {
+    disabled: false
+  }
+});
+var checkboxInput = tv2({
+  base: [
+    "rounded border-2 focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800",
+    "transition-colors duration-200",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+    "bg-white dark:bg-gray-800"
+  ],
+  variants: {
+    size: {
+      sm: "h-3 w-3",
+      md: "h-4 w-4",
+      lg: "h-5 w-5"
+    },
+    error: {
+      true: "border-red-500 dark:border-red-400 focus:ring-red-500 dark:focus:ring-red-400",
+      false: ""
+    }
+  },
+  defaultVariants: {
+    size: "md",
+    error: false
+  }
+});
+var checkboxLabel = tv2({
+  base: "select-none transition-colors duration-200",
+  variants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg"
+    },
+    disabled: {
+      true: "cursor-not-allowed",
+      false: "cursor-pointer"
+    },
+    error: {
+      true: "text-red-700 dark:text-red-400",
+      false: "text-gray-900 dark:text-gray-100"
+    }
+  },
+  defaultVariants: {
+    size: "md",
+    disabled: false,
+    error: false
+  }
+});
+var checkboxDescription = tv2({
+  base: "mt-1 transition-colors duration-200",
+  variants: {
+    size: {
+      sm: "text-xs",
+      md: "text-sm",
+      lg: "text-base"
+    },
+    error: {
+      true: "text-red-600 dark:text-red-400",
+      false: "text-gray-500 dark:text-gray-400"
+    }
+  },
+  defaultVariants: {
+    size: "md",
+    error: false
+  }
+});
+var checkboxErrorMessage = tv2({
+  base: "mt-1 text-sm text-red-600 dark:text-red-400 transition-colors duration-200"
+});
+
+// src/Checkbox/index.tsx
+import { jsx as jsx3, jsxs as jsxs3 } from "react/jsx-runtime";
+var Checkbox = React2.forwardRef(
+  (_a, ref) => {
+    var _b = _a, {
+      size = "md",
+      color = "blue",
+      disabled = false,
+      indeterminate = false,
+      label,
+      description,
+      error = false,
+      errorMessage,
+      className = "",
+      labelClassName = "",
+      checkboxClassName = ""
+    } = _b, props = __objRest(_b, [
+      "size",
+      "color",
+      "disabled",
+      "indeterminate",
+      "label",
+      "description",
+      "error",
+      "errorMessage",
+      "className",
+      "labelClassName",
+      "checkboxClassName"
+    ]);
+    const inputRef = useRef2(null);
+    const mergedRef = ref || inputRef;
+    useEffect2(() => {
+      if (mergedRef.current) {
+        mergedRef.current.indeterminate = indeterminate;
+      }
+    }, [indeterminate, mergedRef]);
+    const colorStyle = colorStyles2[color];
+    const inputClassName = [
+      checkboxInput({ size, error }),
+      colorStyle,
+      checkboxClassName
+    ].filter(Boolean).join(" ");
+    const containerClassName = checkboxContainer({
+      disabled,
+      className
+    });
+    const labelElement = label && /* @__PURE__ */ jsxs3("div", { className: "flex-1", children: [
+      /* @__PURE__ */ jsx3(
+        "label",
+        {
+          htmlFor: props.id,
+          className: checkboxLabel({
+            size,
+            disabled,
+            error,
+            className: labelClassName
+          }),
+          children: label
+        }
+      ),
+      description && /* @__PURE__ */ jsx3(
+        "div",
+        {
+          className: checkboxDescription({
+            size,
+            error
+          }),
+          children: description
+        }
+      ),
+      error && errorMessage && /* @__PURE__ */ jsx3("div", { className: checkboxErrorMessage(), children: errorMessage })
+    ] });
+    return /* @__PURE__ */ jsxs3("div", { className: containerClassName, children: [
+      /* @__PURE__ */ jsx3(
+        "input",
+        __spreadValues({
+          ref: mergedRef,
+          type: "checkbox",
+          disabled,
+          className: inputClassName
+        }, props)
+      ),
+      labelElement
+    ] });
+  }
+);
+Checkbox.displayName = "Checkbox";
 export {
   Button,
+  Checkbox,
   Drawer
 };

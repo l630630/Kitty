@@ -37,4 +37,22 @@ interface DrawerProps {
 
 declare const Drawer: React.FC<DrawerProps>;
 
-export { Button, ButtonColor, ButtonProps, ButtonSize, ButtonVariant, Drawer, DrawerPlacement, DrawerProps, DrawerSize };
+type CheckboxSize = "sm" | "md" | "lg";
+type CheckboxColor = "blue" | "green" | "red" | "gray";
+interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "color"> {
+    size?: CheckboxSize;
+    color?: CheckboxColor;
+    disabled?: boolean;
+    indeterminate?: boolean;
+    label?: React.ReactNode;
+    description?: React.ReactNode;
+    error?: boolean;
+    errorMessage?: string;
+    className?: string;
+    labelClassName?: string;
+    checkboxClassName?: string;
+}
+
+declare const Checkbox: React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>>;
+
+export { Button, ButtonColor, ButtonProps, ButtonSize, ButtonVariant, Checkbox, CheckboxColor, CheckboxProps, CheckboxSize, Drawer, DrawerPlacement, DrawerProps, DrawerSize };

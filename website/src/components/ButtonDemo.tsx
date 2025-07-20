@@ -1,5 +1,5 @@
-import { Button } from "@my-component-library/ui-core";
-import React, { type ReactElement } from "react";
+import { Button } from "kitty-react";
+import { type ReactElement } from "react";
 
 export function VariantButtons() {
   return (

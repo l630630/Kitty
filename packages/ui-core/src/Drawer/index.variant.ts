@@ -1,10 +1,10 @@
 import { tv } from "tailwind-variants";
 
 export const drawerOverlay = tv({
-  base: "fixed inset-0 bg-black transition-opacity z-40 backdrop-blur-sm",
+  base: "fixed inset-0 bg-black dark:bg-gray-950 transition-opacity z-40 backdrop-blur-sm",
   variants: {
     open: {
-      true: "opacity-60",
+      true: "opacity-60 dark:opacity-70",
       false: "opacity-0 pointer-events-none",
     },
   },
@@ -14,7 +14,7 @@ export const drawerOverlay = tv({
 });
 
 export const drawerContainer = tv({
-  base: "fixed bg-white shadow-lg transition-transform duration-300 ease-in-out z-50 overflow-auto flex flex-col",
+  base: "fixed bg-white dark:bg-dark-800 shadow-lg dark:shadow-gray-900/50 transition-all duration-300 ease-in-out z-50 overflow-auto flex flex-col border-gray-200 dark:border-gray-700",
   variants: {
     placement: {
       left: "left-0 top-0 bottom-0 h-full",
@@ -76,21 +76,21 @@ export const drawerContainer = tv({
 });
 
 export const drawerHeader = tv({
-  base: "flex items-center justify-between p-4 border-b border-gray-200",
+  base: "flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300",
 });
 
 export const drawerTitle = tv({
-  base: "text-lg font-medium",
+  base: "text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300",
 });
 
 export const drawerCloseButton = tv({
-  base: "p-1 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none",
+  base: "p-1 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-300",
 });
 
 export const drawerBody = tv({
-  base: "p-4 overflow-y-auto flex-1",
+  base: "p-4 overflow-y-auto flex-1 text-gray-900 dark:text-gray-100 transition-colors duration-300",
 });
 
 export const drawerFooter = tv({
-  base: "border-t border-gray-200 p-4",
+  base: "border-t border-gray-200 dark:border-gray-700 p-4 transition-colors duration-300",
 });

@@ -15,65 +15,247 @@ export type Props = {
 const { title, description, frontmatter } = Astro.props;
 const _pageTitle = frontmatter?.title || title;
 const _pageDescription = frontmatter?.description || description;
+
+// 获取当前页面路径用于导航高亮
+const currentPath = Astro.url.pathname;
+
+// 判断导航项是否为当前页面
+function isActivePage(path: string): boolean {
+  if (path === getPath("/docs") && (currentPath === getPath("/docs") || currentPath === getPath("/docs/"))) {
+    return true;
+  }
+  if (path.includes("/docs/components/") && currentPath.includes("/docs/components/")) {
+    return true;
+  }
+  return currentPath === path || currentPath === path + "/";
+}
+
+// 判断是否为首页
+const isHomePage = currentPath === getPath("/") || currentPath === getPath("");
 ---
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={getPath("/favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
     <title>{_pageTitle}</title>
     {_pageDescription && <meta name="description" content={_pageDescription} />}
+    <script>
+      // 防止主题闪烁的脚本，需要在页面加载前执行
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = savedTheme || systemTheme;
+
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+
+        // 更新 meta theme-color
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', theme === 'dark' ? '#0f172a' : '#ffffff');
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-gray-50 min-h-screen">
-    <!-- 顶部导航栏 -->
-    <header class="bg-white shadow-sm sticky top-0 z-10">
+  <body class="bg-gray-50 dark:bg-dark-900 min-h-screen transition-theme duration-300">
+    <!-- 顶部导航栏 - 固定在所有页面 -->
+    <header class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-dark-800/90 backdrop-blur-md shadow-sm dark:shadow-gray-900/20 z-50 border-b border-gray-200/50 dark:border-gray-700/50 transition-theme duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-        <div class="flex items-center">
-          <a href={getPath("/")} class="text-xl font-bold text-primary-600">我的组件库</a>
+        <div class="flex items-center space-x-8">
+          <!-- Logo -->
+          <a href={getPath("/")} class={`flex items-center space-x-2 text-xl font-bold transition-theme duration-300 ${
+            isHomePage
+              ? 'text-primary-600 dark:text-primary-400'
+              : 'text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300'
+          }`}>
+            <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+              <span class="text-white font-bold text-sm">K</span>
+            </div>
+            <span>Kitty UI</span>
+          </a>
+
+          <!-- 主导航 -->
+          <nav class="hidden md:flex items-center space-x-1">
+            <a
+              href={getPath("/docs")}
+              class={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
+                isActivePage(getPath("/docs"))
+                  ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                  : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              }`}
+            >
+              指南
+            </a>
+            <a
+              href={getPath("/docs/components/button")}
+              class={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
+                isActivePage(getPath("/docs/components/"))
+                  ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                  : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              }`}
+            >
+              组件
+            </a>
+            <a
+              href={getPath("/#examples")}
+              class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-all duration-300"
+            >
+              示例
+            </a>
+          </nav>
         </div>
-        <div class="hidden md:flex items-center space-x-4">
-          <a href={getPath("/docs")} class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">文档</a>
-          <a href="https://github.com/l630630/Kitty" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium" target="_blank">GitHub</a>
+
+        <!-- 右侧操作区 -->
+        <div class="flex items-center space-x-4">
+          <!-- 版本标识 -->
+          <div class="hidden sm:flex items-center px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-medium rounded-full">
+            v0.1.0
+          </div>
+
+          <!-- GitHub 链接 -->
+          <a href="https://github.com/l630630/Kitty" class="hidden md:flex items-center justify-center w-9 h-9 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-theme duration-300" target="_blank" aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+
+          <!-- 主题切换 -->
+          <div id="theme-toggle-container"></div>
+
+          <!-- 移动端菜单按钮 -->
+          <button id="mobile-menu-button" class="md:hidden flex items-center justify-center w-9 h-9 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-theme duration-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
-        <button id="mobile-menu-button" class="md:hidden flex items-center p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
       </div>
     </header>
 
-    <div class="flex min-h-[calc(100vh-4rem)]">
-      <!-- 侧边栏 -->
-      <aside id="sidebar" class="w-64 bg-white border-r border-gray-200 hidden md:block overflow-y-auto h-[calc(100vh-4rem)] sticky top-16">
-        <nav class="px-4 py-6">
-          <div class="mb-8">
-            <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">开始</div>
-            <a href={getPath("/docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
-              介绍
-            </a>
+    <!-- 为固定导航栏添加顶部间距 -->
+    <div class="pt-16">
+      <div class="flex min-h-[calc(100vh-4rem)]">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="w-64 bg-white/50 dark:bg-dark-800/50 backdrop-blur-sm border-r border-gray-200/50 dark:border-gray-700/50 hidden md:block overflow-y-auto h-[calc(100vh-4rem)] sticky top-16 transition-theme duration-300">
+        <nav class="px-4 py-6 space-y-6">
+          <!-- 搜索框 -->
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="搜索组件..."
+              class="w-full px-3 py-2 pl-9 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-theme duration-300"
+            />
+            <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </div>
-          <div>
-            <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">组件</div>
-            <a href={getPath("/docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1 transition-colors">
-              Button 按钮
-            </a>
-            <a href={getPath("/docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors">
-              Drawer 抽屉
-            </a>
+
+          <!-- 导航分组 -->
+          <div class="space-y-6">
+            <div>
+              <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 px-2 uppercase tracking-wider transition-theme duration-300">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                开始
+              </div>
+              <div class="space-y-1">
+                <a
+                  href={getPath("/docs")}
+                  class={`group flex items-center px-3 py-2 text-sm rounded-lg transition-all duration-300 ${
+                    isActivePage(getPath("/docs"))
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                  }`}
+                >
+                  <svg class={`w-4 h-4 mr-3 transition-colors duration-300 ${
+                    isActivePage(getPath("/docs"))
+                      ? 'text-primary-500 dark:text-primary-400'
+                      : 'text-gray-400 group-hover:text-primary-500'
+                  }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  快速开始
+                </a>
+                <a href={getPath("/docs/installation")} class="group flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-all duration-300">
+                  <svg class="w-4 h-4 mr-3 text-gray-400 group-hover:text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  安装
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 px-2 uppercase tracking-wider transition-theme duration-300">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd"/>
+                </svg>
+                组件
+              </div>
+              <div class="space-y-1">
+                <a
+                  href={getPath("/docs/components/button")}
+                  class={`group flex items-center px-3 py-2 text-sm rounded-lg transition-all duration-300 ${
+                    currentPath.includes('/docs/components/button')
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                  }`}
+                >
+                  <span class={`w-4 h-4 mr-3 rounded text-xs font-bold flex items-center justify-center transition-all duration-300 ${
+                    currentPath.includes('/docs/components/button')
+                      ? 'bg-blue-200 dark:bg-blue-800 text-blue-700 dark:text-blue-300 shadow-sm'
+                      : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                  }`}>B</span>
+                  Button 按钮
+                </a>
+                <a
+                  href={getPath("/docs/components/checkbox")}
+                  class={`group flex items-center px-3 py-2 text-sm rounded-lg transition-all duration-300 ${
+                    currentPath.includes('/docs/components/checkbox')
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                  }`}
+                >
+                  <span class={`w-4 h-4 mr-3 rounded text-xs font-bold flex items-center justify-center transition-all duration-300 ${
+                    currentPath.includes('/docs/components/checkbox')
+                      ? 'bg-green-200 dark:bg-green-800 text-green-700 dark:text-green-300 shadow-sm'
+                      : 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                  }`}>C</span>
+                  Checkbox 多选框
+                </a>
+                <a
+                  href={getPath("/docs/components/drawer")}
+                  class={`group flex items-center px-3 py-2 text-sm rounded-lg transition-all duration-300 ${
+                    currentPath.includes('/docs/components/drawer')
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                  }`}
+                >
+                  <span class={`w-4 h-4 mr-3 rounded text-xs font-bold flex items-center justify-center transition-all duration-300 ${
+                    currentPath.includes('/docs/components/drawer')
+                      ? 'bg-purple-200 dark:bg-purple-800 text-purple-700 dark:text-purple-300 shadow-sm'
+                      : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
+                  }`}>D</span>
+                  Drawer 抽屉
+                </a>
+              </div>
+            </div>
           </div>
         </nav>
       </aside>
 
       <!-- 移动端侧边栏 -->
-      <div id="mobile-sidebar" class="fixed inset-0 z-20 bg-gray-900 bg-opacity-50 hidden">
-        <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-sidebar-panel">
-          <div class="flex justify-between items-center p-4 border-b">
-            <span class="font-medium">导航菜单</span>
-            <button id="close-sidebar" class="p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100">
+      <div id="mobile-sidebar" class="fixed inset-0 z-20 bg-gray-900 dark:bg-gray-950 bg-opacity-50 dark:bg-opacity-70 hidden transition-theme duration-300">
+        <div class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-dark-800 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-sidebar-panel">
+          <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 transition-theme duration-300">
+            <span class="font-medium text-gray-900 dark:text-gray-100 transition-theme duration-300">导航菜单</span>
+            <button id="close-sidebar" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-theme duration-300">
               <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -81,17 +263,48 @@ const _pageDescription = frontmatter?.description || description;
           </div>
           <nav class="px-4 py-6">
             <div class="mb-8">
-              <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">开始</div>
-              <a href={getPath("/docs")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
-                介绍
+              <div class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 px-2 uppercase tracking-wider transition-theme duration-300">开始</div>
+              <a
+                href={getPath("/docs")}
+                class={`block px-3 py-2 rounded-md transition-all duration-300 ${
+                  isActivePage(getPath("/docs"))
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                }`}
+              >
+                快速开始
               </a>
             </div>
             <div>
-              <div class="text-sm font-medium text-gray-500 mb-3 px-2 uppercase tracking-wider">组件</div>
-              <a href={getPath("/docs/components/button")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md mb-1">
+              <div class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 px-2 uppercase tracking-wider transition-theme duration-300">组件</div>
+              <a
+                href={getPath("/docs/components/button")}
+                class={`block px-3 py-2 rounded-md mb-1 transition-all duration-300 ${
+                  currentPath.includes('/docs/components/button')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                }`}
+              >
                 Button 按钮
               </a>
-              <a href={getPath("/docs/components/drawer")} class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md">
+              <a
+                href={getPath("/docs/components/checkbox")}
+                class={`block px-3 py-2 rounded-md mb-1 transition-all duration-300 ${
+                  currentPath.includes('/docs/components/checkbox')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                }`}
+              >
+                Checkbox 多选框
+              </a>
+              <a
+                href={getPath("/docs/components/drawer")}
+                class={`block px-3 py-2 rounded-md transition-all duration-300 ${
+                  currentPath.includes('/docs/components/drawer')
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 shadow-sm'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                }`}
+              >
                 Drawer 抽屉
               </a>
             </div>
@@ -100,19 +313,73 @@ const _pageDescription = frontmatter?.description || description;
       </div>
 
       <!-- 主内容区 -->
-      <main class="flex-1 overflow-auto">
+      <main class="flex-1 overflow-auto bg-gray-50 dark:bg-dark-900 transition-theme duration-300">
         <div class="max-w-4xl mx-auto px-4 py-8">
           <slot />
         </div>
       </main>
+      </div>
     </div>
 
     <!-- 页脚 -->
-    <footer class="bg-white border-t border-gray-200 py-6">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+    <footer class="bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-gray-700 py-6 transition-theme duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-gray-400 text-sm transition-theme duration-300">
         © {new Date().getFullYear()} 我的组件库. 保留所有权利.
       </div>
     </footer>
+
+    <script>
+      // 移动端菜单切换
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const mobileSidebarPanel = document.getElementById('mobile-sidebar-panel');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        function openMobileSidebar() {
+          mobileSidebar?.classList.remove('hidden');
+          setTimeout(() => {
+            mobileSidebarPanel?.classList.remove('-translate-x-full');
+          }, 10);
+        }
+
+        function closeMobileSidebar() {
+          mobileSidebarPanel?.classList.add('-translate-x-full');
+          setTimeout(() => {
+            mobileSidebar?.classList.add('hidden');
+          }, 300);
+        }
+
+        mobileMenuButton?.addEventListener('click', openMobileSidebar);
+        closeSidebar?.addEventListener('click', closeMobileSidebar);
+        mobileSidebar?.addEventListener('click', (e) => {
+          if (e.target === mobileSidebar) {
+            closeMobileSidebar();
+          }
+        });
+
+        // 初始化主题切换组件
+        import('../components/ThemeToggle.tsx').then(({ default: ThemeToggle }) => {
+          import('react').then(React => {
+            import('react-dom/client').then(ReactDOM => {
+              // 桌面端主题切换
+              const themeToggleContainer = document.getElementById('theme-toggle-container');
+              if (themeToggleContainer) {
+                const root = ReactDOM.createRoot(themeToggleContainer);
+                root.render(React.createElement(ThemeToggle));
+              }
+
+              // 移动端主题切换
+              const themeToggleContainerMobile = document.getElementById('theme-toggle-container-mobile');
+              if (themeToggleContainerMobile) {
+                const root = ReactDOM.createRoot(themeToggleContainerMobile);
+                root.render(React.createElement(ThemeToggle));
+              }
+            });
+          });
+        });
+      });
+    </script>
 
     <script>
       // 移动端菜单交互
