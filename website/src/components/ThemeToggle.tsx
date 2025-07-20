@@ -1,10 +1,10 @@
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from "../hooks/useTheme";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   const getIcon = () => {
-    if (theme === 'dark') {
+    if (theme === "dark") {
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export function ThemeToggle() {
   };
 
   const getTooltip = () => {
-    return theme === 'light' ? '切换到暗黑模式' : '切换到亮色模式';
+    return theme === "light" ? "切换到暗黑模式" : "切换到亮色模式";
   };
 
   return (

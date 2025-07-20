@@ -3,7 +3,7 @@ module.exports = {
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "../packages/ui-core/src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class', // 启用基于 class 的暗黑模式
+  darkMode: "class", // 启用基于 class 的暗黑模式
   theme: {
     extend: {
       colors: {
@@ -37,14 +37,15 @@ module.exports = {
       },
       // 添加过渡动画
       transitionProperty: {
-        'theme': 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+        theme:
+          "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
       },
       transitionDuration: {
-        '250': '250ms',
-        '300': '300ms',
+        250: "250ms",
+        300: "300ms",
       },
       transitionTimingFunction: {
-        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
     },
   },

@@ -21,10 +21,16 @@ const currentPath = Astro.url.pathname;
 
 // 判断导航项是否为当前页面
 function isActivePage(path: string): boolean {
-  if (path === getPath("/docs") && (currentPath === getPath("/docs") || currentPath === getPath("/docs/"))) {
+  if (
+    path === getPath("/docs") &&
+    (currentPath === getPath("/docs") || currentPath === getPath("/docs/"))
+  ) {
     return true;
   }
-  if (path.includes("/docs/components/") && currentPath.includes("/docs/components/")) {
+  if (
+    path.includes("/docs/components/") &&
+    currentPath.includes("/docs/components/")
+  ) {
     return true;
   }
   return currentPath === path || currentPath === path + "/";

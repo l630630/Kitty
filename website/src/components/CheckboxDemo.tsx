@@ -1,8 +1,4 @@
-import {
-    Checkbox,
-    type CheckboxColor,
-    type CheckboxSize,
-} from "kitty-react";
+import { Checkbox, type CheckboxColor, type CheckboxSize } from "kitty-react";
 import { type ReactElement, useState } from "react";
 
 export function BasicCheckbox(): ReactElement {
@@ -75,11 +71,7 @@ export function CheckboxStates(): ReactElement {
         label="不确定状态"
         description="点击可切换到选中状态"
       />
-      <Checkbox
-        error
-        label="错误状态"
-        errorMessage="这是一个错误信息"
-      />
+      <Checkbox error label="错误状态" errorMessage="这是一个错误信息" />
     </div>
   );
 }
@@ -101,7 +93,8 @@ export function CheckboxGroup(): ReactElement {
   };
 
   const allSelected = selectedItems.length === items.length;
-  const someSelected = selectedItems.length > 0 && selectedItems.length < items.length;
+  const someSelected =
+    selectedItems.length > 0 && selectedItems.length < items.length;
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
